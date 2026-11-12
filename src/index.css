@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+
+body {
+  min-height: 100vh;
+}
+
+@font-face {
+  font-family: "Valty";
+  src: url("src/assets/fonts/Valty DEMO.otf");
+}
+
+@font-face {
+  font-family: "Bebas";
+  src: url("src/assets/fonts/BebasNeue-Regular.otf");
+}
