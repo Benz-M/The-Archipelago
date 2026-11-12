@@ -7,10 +7,10 @@ body {
 
 @font-face {
   font-family: "Valty";
-  src: url("src/assets/fonts/Valty DEMO.otf");
+  src: url("/src/assets/fonts/Valty DEMO.otf");
 }
 
 @font-face {
   font-family: "Bebas";
-  src: url("src/assets/fonts/BebasNeue-Regular.otf");
+  src: url("/src/assets/fonts/BebasNeue-Regular.otf");
 }
