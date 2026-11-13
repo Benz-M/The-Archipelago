@@ -13,8 +13,9 @@ interface ActivitiesCardProps {
 
 export default function ActivitiesCard({ activities }: ActivitiesCardProps) {
     return (
-        <article className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="h-[118px] overflow-hidden">
+        <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            {/* Added shrink-0 and w-full to lock the image height */}
+            <div className="h-[118px] w-full shrink-0 overflow-hidden">
                 <img
                     src={activities.image}
                     alt={activities.name}
@@ -22,7 +23,8 @@ export default function ActivitiesCard({ activities }: ActivitiesCardProps) {
                 />
             </div>
 
-            <div className="px-2.5 py-1.5">
+            {/* Added flex-1 and flex-col so the text area fills the rest evenly */}
+            <div className="flex flex-1 flex-col px-2.5 py-1.5">
                 <h3 className="flex items-center gap-1 text-sm font-bold text-[#082d52]">
                     {activities.name}
                 </h3>
