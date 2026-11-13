@@ -78,7 +78,7 @@ export default function DesktopNav() {
     
     return (
         <>
-            <nav aria-label="Primary" className="animate-drop-in hidden flex-1 items-center justify-end p-3 pr-6 [animation-delay:350ms] lg:flex">
+            <nav aria-label="Primary" className="animate-drop-in z-50 hidden flex-1 items-center justify-end p-3 [animation-delay:350ms] lg:flex">
                 <div className="flex w-full max-w-lg items-center justify-between gap-2 rounded-full bg-[#3989D6]/75 p-1 pl-2.5 shadow-[0_6px_24px_rgba(30,90,150,0.16),inset_0_1px_0_rgba(255,255,255,0.4)] ring-1 ring-white/40 backdrop-blur-2xl backdrop-saturate-150">
                     <ul ref={listRef} onMouseLeave={() => setHovered(null)} className="relative flex flex-1 items-center justify-between text-[13px] font-medium">
                     {indicator && (

@@ -1,5 +1,5 @@
 import { useState, type FormEvent, type ReactNode } from "react";
-import { Calendar, ClipboardList, Compass, Headphones, Lock, MapPin, Plane, ShieldCheck, Star, Users, Waves, Wallet,} from "lucide-react";
+import { Calendar, ClipboardList, Compass, Headphones, Lock, MapPin, Plane, ShieldCheck, Star, Users, Waves, Wallet, CheckCircle } from "lucide-react";
 
 import LogoCard from "../components/logo-card";
 import DesktopNav from "../components/navbar";
@@ -25,7 +25,7 @@ interface Feature {
     text: string;
 }
 
-interface Field {
+interface FieldProps {
     label: string,
     optional?: boolean, 
     hint: string,
@@ -43,7 +43,7 @@ const features: Feature[] = [
 const selectClass =
     "w-full appearance-none rounded-md border border-gray-200 bg-white py-2 pl-8 pr-6 text-xs text-gray-700 outline-none transition focus:border-[#3989D6] focus:ring-1 focus:ring-[#3989D6]";
 
-function Field({ label, optional, hint, icon, children,}: Field ) {
+function Field({ label, optional, hint, icon, children,}: FieldProps ) {
     return (
         <label className="block">
             <span className="text-xs font-bold text-[#082d52] sm:text-sm">
@@ -65,7 +65,6 @@ function Field({ label, optional, hint, icon, children,}: Field ) {
 }
 
 export default function Booking() {
-
     const [form, setForm] = useState<TripForm>({
         destination: "",
         date: "",
@@ -74,22 +73,43 @@ export default function Booking() {
         budget: "",
     });
 
+    const [showToast, setShowToast] = useState(false);
+
     const update = (key: keyof TripForm) => (e: { target: { value: string } }) =>
         setForm((prev) => ({ ...prev, [key]: e.target.value }));
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
+        
+        setShowToast(true);
+
+        setForm({
+            destination: "",
+            date: "",
+            travelers: "",
+            style: "",
+            budget: "",
+        });
+
+        setTimeout(() => {
+            setShowToast(false);
+        }, 4000);
     };
 
     return (
-        <main className="bg-white">
-            <section className="relative min-h-[360px] overflow-hidden bg-cover bg-[position:center_60%] pb-24" style={{ backgroundImage: `url(${PlanTripBG})` }}>
+        <main className="bg-white relative min-h-screen flex flex-col">
+            <section className="relative min-h-[360px] bg-cover bg-[position:center_60%] pb-24" style={{ backgroundImage: `url(${PlanTripBG})` }}>
+                
                 <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/15 to-transparent" />
-                <header className="relative z-10 mx-auto flex max-w-[1400px] items-center justify-between px-5 py-5 sm:px-8">
-                    <LogoCard />
-                    <DesktopNav />
-                </header>
-                <div className="relative z-10 mx-auto max-w-[1400px] px-6 pt-5 sm:px-10 sm:pt-3">
+                
+                <div className="absolute inset-x-0 top-0 z-[100] h-24">
+                    <header className="mx-auto flex h-full max-w-[1600px] items-center justify-between px-5 py-5 sm:px-10">
+                        <LogoCard />
+                        <DesktopNav />
+                    </header>
+                </div>
+                
+                <div className="relative z-10 mx-auto max-w-[1600px] px-6 pt-24 sm:px-10 sm:pt-28">
                     <h1 className="text-5xl font-extrabold tracking-wide text-[#ffb938] sm:text-6xl">
                         Plan my Trip
                     </h1>
@@ -99,10 +119,11 @@ export default function Booking() {
                     </p>
                 </div>
             </section>
-            <section className="relative z-20 mx-auto -mt-16 max-w-[1400px] px-4 sm:px-8">
+            
+            <section className="relative z-20 mx-auto -mt-16 w-full max-w-[1600px] px-4 sm:px-10 flex-1">
                 <form
                     onSubmit={handleSubmit}
-                    className="rounded-2xl bg-white p-5 shadow-xl ring-1 ring-black/5 sm:p-6"
+                    className="rounded-2xl bg-white p-5 shadow-xl ring-1 ring-black/5 sm:p-8"
                 >
                     <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
                         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#082d52] text-white">
@@ -194,21 +215,31 @@ export default function Booking() {
                     </div>
                 </form>
             </section>
-            <section className="mx-auto max-w-[1400px] px-4 py-5 sm:px-8">
-                <div className="grid grid-cols-1 gap-4 rounded-xl bg-[#dbeafb] px-5 py-4 sm:grid-cols-2 lg:grid-cols-4">
+            
+            <section className="mx-auto w-full max-w-[1600px] px-4 py-6 sm:px-10 mt-auto">
+                <div className="grid grid-cols-1 gap-4 rounded-xl bg-[#dbeafb] px-5 py-5 sm:grid-cols-2 lg:grid-cols-4">
                     {features.map((f) => (
                         <div key={f.title} className="flex items-center gap-3">
-                            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#082d52] text-white">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#082d52] text-white">
                                 {f.icon}
                             </div>
                             <div>
-                                <h3 className="text-xs font-bold leading-tight text-[#082d52] sm:text-sm">{f.title}</h3>
-                                <p className="text-[10px] leading-tight text-gray-600 sm:text-xs">{f.text}</p>
+                                <h3 className="text-sm font-bold leading-tight text-[#082d52] sm:text-base">{f.title}</h3>
+                                <p className="text-[11px] leading-tight text-gray-600 sm:text-xs">{f.text}</p>
                             </div>
                         </div>
                     ))}
                 </div>
             </section>
+
+            <div
+                className={`fixed bottom-6 left-1/2 z-[200] flex -translate-x-1/2 items-center gap-3 rounded-full bg-[#082d52] px-6 py-3 text-white shadow-2xl transition-all duration-300 ease-out ${
+                    showToast ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0 pointer-events-none'
+                }`}
+            >
+                <CheckCircle size={20} className="text-[#ffb938]" />
+                <p className="text-sm font-medium">Itinerary created successfully!</p>
+            </div>
         </main>
     );
 }
