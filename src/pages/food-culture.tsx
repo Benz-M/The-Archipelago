@@ -49,43 +49,51 @@ const foodculture: FoodCulture[] = [
 
 export default function FoodAndCulture() {
     return (
-        <main>
-            <section className="relative min-h-[280px] overflow-hidden bg-cover bg-[position:center_55%]" style={{ backgroundImage: `url(${ActivitesBG})` }}>
+        // Added min-h-screen and flex-col to stretch the page and push footer down
+        <main className="min-h-screen flex flex-col">
+            <section className="relative min-h-[280px] bg-cover bg-[position:center_55%]" style={{ backgroundImage: `url(${ActivitesBG})` }}>
                 <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/30 to-black/10" />
-                <header className="relative z-10 mx-auto flex max-w-[1400px] items-center justify-between px-5 py-5 sm:px-8">
-                    <LogoCard />
-                    <DesktopNav />
-                </header>
-                <div className="relative z-10 mx-auto max-w-[1400px] px-6 pb-7 pt-5 sm:px-10 sm:pt-3">
+                
+                <div className="absolute inset-x-0 top-0 z-[100] h-24">
+                    {/* Increased max-w to 1600px for better screen usage */}
+                    <header className="mx-auto flex h-full max-w-[1600px] items-center justify-between px-5 py-5 sm:px-10">
+                        <LogoCard />
+                        <DesktopNav />
+                    </header>
+                </div>
+                
+                <div className="relative z-10 mx-auto max-w-[1600px] px-6 pb-7 pt-24 sm:px-10 sm:pt-28">
                     <h1 className="text-5xl font-extrabold tracking-wide text-[#ffb938] sm:text-6xl">
                         Food and Culture
                     </h1>
                     <p className="mt-1 max-w-[410px] text-sm leading-[1.1] text-white sm:text-lg">
                         From mouthwatering dishes to timeless traditions, immerse yourself in rich flavors and vibrant culture that make the philippines truly unique.
                     </p>
-                    <a className="mt-4 inline-flex items-center gap-1 rounded-full border border-white/30 bg-black/20 px-4 py-1.5 text-xs text-white backdrop-blur-sm transition hover:bg-white hover:text-[#082d52]">
+                    <a href="#food-culture" className="mt-4 inline-flex items-center gap-1 rounded-full border border-white/30 bg-black/20 px-4 py-1.5 text-xs text-white backdrop-blur-sm transition hover:bg-white hover:text-[#082d52]">
                         Explore All Food & Culture
                         <ArrowRight size={14} />
                     </a>
                 </div>
             </section>
-            <section className="mx-auto max-w-[1400px] px-5 py-3 sm:px-10">
-                <div className="grid grid-cols-1 gap-6 lg:grid-cols-5 lg:gap-8">
+            
+            {/* flex-1 forces this middle section to grow and push the bottom section down */}
+            <section id="food-culture" className="flex-1 mx-auto w-full max-w-[1600px] px-5 py-6 sm:px-10 sm:py-8">
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-5 lg:gap-10">
                     <div className="lg:col-span-2">
-                        <h2 className="mb-2 text-xl font-[Bebas] text-[#082d52] sm:text-2xl">
+                        <h2 className="mb-3 text-xl font-[Bebas] text-[#082d52] sm:text-2xl">
                             Must-Try Filipino Foods
                         </h2>
-                        <div className="grid grid-cols-2 gap-4 sm:gap-5">
+                        <div className="grid grid-cols-2 gap-4 sm:gap-6">
                             {foodculture.slice(0, 2).map((foodculture) => (
                                 <FoodCultureCard key={foodculture.name} foodculture={foodculture}/>
                             ))}
                         </div>
                     </div>
                     <div className="lg:col-span-3">
-                        <h2 className="mb-2 text-xl font-[Bebas] text-[#082d52] sm:text-2xl">
+                        <h2 className="mb-3 text-xl font-[Bebas] text-[#082d52] sm:text-2xl">
                             Philippines Culture & Traditions
                         </h2>
-                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5">
+                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6">
                             {foodculture.slice(2).map((foodculture) => (
                                 <FoodCultureCard key={foodculture.name} foodculture={foodculture}/>
                             ))}
@@ -93,8 +101,9 @@ export default function FoodAndCulture() {
                     </div>
                 </div>
             </section>
-            <section className="border-t border-gray-200">
-                <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-6 py-3 sm:px-10">
+            
+            <section className="border-t border-gray-200 mt-auto">
+                <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-6 py-5 sm:px-10">
                     <div className="flex items-center gap-3">
                         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#082d52] text-white">
                             <HeartHandshake size={21} strokeWidth={2.5}/>

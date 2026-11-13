@@ -22,9 +22,9 @@ const NAV_LINKS = [
 export default function MobileNavBar({ menuOpen, setMenuOpen, active, handleNav, menuButtonRef }: MobileNavBarProps) {
     return (
         <>
-            <div className="animate-fade-in flex items-center pr-4 [animation-delay:350ms] sm:pr-6 lg:hidden">
+            <div className="animate-fade-in z-[100] flex items-center pr-4 [animation-delay:350ms] sm:pr-6 lg:hidden">
                 <button
-                    ref={menuButtonRef}
+                    ref={menuButtonRef} 
                     type="button"
                     onClick={() => setMenuOpen((o) => !o)}
                     aria-expanded={menuOpen}
@@ -44,7 +44,7 @@ export default function MobileNavBar({ menuOpen, setMenuOpen, active, handleNav,
                 id="mobile-menu"
                 aria-label="Mobile"
                 aria-hidden={!menuOpen}
-                className={`absolute inset-x-4 top-full z-99 -mt-2 rounded-3xl bg-[#3989D6]/90 p-2.5 text-white shadow-[0_8px_30px_rgba(30,90,150,0.18),inset_0_1px_0_rgba(255,255,255,0.4)] ring-1 ring-white/40 backdrop-blur-2xl backdrop-saturate-150 transition-[opacity,transform,visibility] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] sm:inset-x-6 lg:hidden ${
+                className={`absolute inset-x-4 top-full z-[100] -mt-2 rounded-3xl bg-[#3989D6]/90 p-2.5 text-white shadow-[0_8px_30px_rgba(30,90,150,0.18),inset_0_1px_0_rgba(255,255,255,0.4)] ring-1 ring-white/40 backdrop-blur-2xl backdrop-saturate-150 transition-[opacity,transform,visibility] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] sm:inset-x-6 lg:hidden ${
                     menuOpen
                         ? 'visible translate-y-0 scale-100 opacity-100'
                         : 'invisible -translate-y-2 scale-95 opacity-0'
