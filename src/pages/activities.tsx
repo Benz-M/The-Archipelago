@@ -54,28 +54,34 @@ const activities: Activities[] = [
 
 export default function Activities() {
     return (
-        <main>
-        <section className="relative min-h-[280px] overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${ActivitesBG})` }}>
+        <main className="min-h-screen flex flex-col">
+        <section className="relative min-h-[280px] bg-cover bg-center" style={{ backgroundImage: `url(${ActivitesBG})` }}>
             <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/30 to-black/10" />
-            <header className="relative z-10 mx-auto flex max-w-[1400px] items-center justify-between px-5 py-5 sm:px-8">
-                <LogoCard />
-                <DesktopNav />
-            </header>
-            <div className="relative z-10 mx-auto max-w-[1400px] px-6 pb-7 pt-5 sm:px-10 sm:pt-3">
+            
+            <div className="absolute inset-x-0 top-0 z-[100] h-24">
+                <header className="mx-auto flex h-full max-w-[1600px] items-center justify-between px-5 py-5 sm:px-10">
+                    <LogoCard />
+                    <DesktopNav />
+                </header>
+            </div>
+            
+            <div className="relative z-10 mx-auto max-w-[1600px] px-6 pb-7 pt-24 sm:px-10 sm:pt-28">
                 <h1 className="text-5xl font-extrabold tracking-wide text-[#ffb938] sm:text-6xl">
                     Activities
                 </h1>
                 <p className="mt-1 max-w-[410px] text-sm leading-[1.1] text-white sm:text-lg">
                     Experience the Philippines through adventure , nature and culture.
                 </p>
-                <a className="mt-4 inline-flex items-center gap-1 rounded-full border border-white/30 bg-black/20 px-4 py-1.5 text-xs text-white backdrop-blur-sm transition hover:bg-white hover:text-[#082d52]">
+                <a href="#activities" className="mt-4 inline-flex items-center gap-1 rounded-full border border-white/30 bg-black/20 px-4 py-1.5 text-xs text-white backdrop-blur-sm transition hover:bg-white hover:text-[#082d52]">
                     Explore All Activities
                     <ArrowRight size={14} />
                 </a>
             </div>
         </section>
-        <section className="mx-auto max-w-[1400px] px-5 py-2 sm:px-10 sm:py-3">
-            <div className="mb-2 flex items-center justify-between">
+        
+        {/* REMOVED flex-1 here so it doesn't stretch and create a huge gap */}
+        <section id="activities" className="mx-auto w-full max-w-[1600px] px-5 py-6 sm:px-10 sm:py-8">
+            <div className="mb-3 flex items-center justify-between">
                 <h2 className="text-xl font-[Bebas] text-[#082d52] sm:text-2xl">
                     Popular Activities
                 </h2>
@@ -90,8 +96,10 @@ export default function Activities() {
             ))}
             </div>
         </section>
-        <section className="border-t border-gray-200">
-            <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-6 py-3 sm:px-10">
+        
+        {/* Kept mt-auto here to push this footer to the bottom of the page */}
+        <section className="border-t border-gray-200 mt-auto">
+            <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-6 py-5 sm:px-10">
                 <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#082d52] text-white">
                         <Calendar size={21} strokeWidth={2.5}/>
