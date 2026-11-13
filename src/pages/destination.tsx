@@ -101,14 +101,19 @@ function FeatureItem({ feature }: FeatureItemProps) {
 
 export default function Destinations() {
   return (
-    <main>
-      <section className="relative min-h-[280px] overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${DestinationBG})` }}>
+    <main className="min-h-screen flex flex-col">
+      <section className="relative min-h-[280px] bg-cover bg-center" style={{ backgroundImage: `url(${DestinationBG})` }}>
+        
         <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/30 to-black/10" />
-        <header className="relative z-99 mx-auto flex max-w-[1400px] items-center justify-between px-5 py-5 sm:px-8">
-          <LogoCard />
-          <DesktopNav />
-        </header>
-        <div className="relative z-1 mx-auto max-w-[1400px] px-6 pb-7 pt-5 sm:px-10 sm:pt-3">
+        
+        <div className="absolute inset-x-0 top-0 z-[100] h-24">
+          <header className="mx-auto flex h-full max-w-[1600px] items-center justify-between px-5 py-5 sm:px-10">
+            <LogoCard />
+            <DesktopNav />
+          </header>
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-[1600px] px-6 pb-7 pt-24 sm:px-10 sm:pt-28">
           <h1 className="text-5xl font-extrabold tracking-wide text-[#ffb938] sm:text-6xl">
             Destinations
           </h1>
@@ -126,8 +131,9 @@ export default function Destinations() {
           </a>
         </div>
       </section>
-      <section className="mx-auto max-w-[1400px] px-5 py-2 sm:px-10 sm:py-3">
-        <div className="mb-2 flex items-center justify-between">
+      
+      <section id="destinations" className="flex-1 mx-auto w-full max-w-[1600px] px-5 py-6 sm:px-10 sm:py-8">
+        <div className="mb-3 flex items-center justify-between">
           <h2 className="text-xl font-[Bebas] text-[#082d52] sm:text-2xl">
             Top Destinations
           </h2>
@@ -142,8 +148,9 @@ export default function Destinations() {
           ))}
         </div>
       </section>
-      <section className="mt-1 border-t border-gray-200">
-        <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-5 px-6 py-4 sm:px-10 lg:grid-cols-4 lg:gap-6">
+      
+      <section className="border-t border-gray-200 mt-auto">
+        <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-5 px-6 py-5 sm:px-10 lg:grid-cols-4 lg:gap-6">
           {features.map((feature) => (
             <FeatureItem key={feature.title} feature={feature} />
           ))}
